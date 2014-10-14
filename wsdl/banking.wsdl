@@ -1,0 +1,1965 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://soap.myplatfon.ru" xmlns:ax27="http://input.template.templatebuilder.myplatfon.ru/xsd" xmlns:ax28="http://validation.input.template.templatebuilder.myplatfon.ru/xsd" xmlns:ax26="http://template.templatebuilder.myplatfon.ru/xsd" xmlns:ax23="http://response.data.soap.myplatfon.ru/xsd" xmlns:ax21="http://data.soap.myplatfon.ru/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://soap.myplatfon.ru">
+    <wsdl:documentation>banking</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax24="http://data.soap.myplatfon.ru/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://response.data.soap.myplatfon.ru/xsd">
+            <xs:import namespace="http://data.soap.myplatfon.ru/xsd"/>
+            <xs:complexType name="Response">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="error" nillable="true" type="ax24:Error"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AddPayToolResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="paymentTool" nillable="true" type="ax24:PaymentTool"/>
+                            <xs:element minOccurs="0" name="paymentToolId" type="xs:short"/>
+                            <xs:element minOccurs="0" name="transactionId" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="AuthResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="accessRoleNames" nillable="true" type="ax24:AccessRoleNameData"/>
+                            <xs:element minOccurs="0" name="level" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DeletePayToolResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="transactionId" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="PayToolsResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="paymentTools" nillable="true" type="ax24:PaymentTool"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="ConfirmPayResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="limits" nillable="true" type="ax24:Limits"/>
+                            <xs:element minOccurs="0" name="params3Ds" nillable="true" type="ax24:Params3Ds"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="PayResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:ConfirmPayResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="transactionId" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="RegResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="transactionId" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="BindPayToolResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="activateCode" type="xs:int"/>
+                            <xs:element minOccurs="0" name="transactionId" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="ActivatePayToolResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="transactionId" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="PayHistoryResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="pageCount" nillable="true" type="xs:int"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="payHistoryList" nillable="true" type="ax24:PayHistoryData"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="SendEmailResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="GibddBillsResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="billsData" nillable="true" type="ax24:BillData"/>
+                            <xs:element minOccurs="0" name="transactionId" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="GetCategoryListResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="ax24:Category"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="RestorePasswordResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="CellOperatorResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="id" type="xs:int"/>
+                            <xs:element minOccurs="0" name="image" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="GetMerchantListResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="merchants" nillable="true" type="ax24:Merchant"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="GetMerchantResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="merchantInfo" nillable="true" type="ax24:MerchantFullInformation"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="GetCntCitiesResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="cntCityData" nillable="true" type="ax24:CntCityData"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="GetCntBanksResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="GetTransactionStateResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="limits" nillable="true" type="ax24:Limits"/>
+                            <xs:element minOccurs="0" name="operationResultMessage" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="operationState" type="xs:int"/>
+                            <xs:element minOccurs="0" name="params3Ds" nillable="true" type="ax24:Params3Ds"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="PayFavoritsResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="payFavoriteList" nillable="true" type="ax24:FavoritePayData"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="AddFavoritePayResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="favoritePay" nillable="true" type="ax24:FavoritePayData"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DeleteFavoritePayResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="RenameFavoritePayResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="FeeResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="fee" type="xs:float"/>
+                            <xs:element minOccurs="0" name="formula" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="CheckResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax23:Response">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="contactCompany" nillable="true" type="ax24:Contacts"/>
+                            <xs:element minOccurs="0" name="contactPaysystem" nillable="true" type="ax24:Contacts"/>
+                            <xs:element minOccurs="0" name="merchantInformation" nillable="true" type="ax24:MerchantFullInformation"/>
+                            <xs:element minOccurs="0" name="operationAmount" type="xs:float"/>
+                            <xs:element minOccurs="0" name="operationDate" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="operationFee" type="xs:float"/>
+                            <xs:element minOccurs="0" name="operationFeePct" type="xs:float"/>
+                            <xs:element minOccurs="0" name="operationId" type="xs:long"/>
+                            <xs:element minOccurs="0" name="operationPayTool" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="operationResultMessage" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="operationState" type="xs:int"/>
+                            <xs:element minOccurs="0" name="operationSum" type="xs:float"/>
+                            <xs:element minOccurs="0" name="operationType" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax212="http://input.template.templatebuilder.myplatfon.ru/xsd" xmlns:ax211="http://template.templatebuilder.myplatfon.ru/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://data.soap.myplatfon.ru/xsd">
+            <xs:import namespace="http://template.templatebuilder.myplatfon.ru/xsd"/>
+            <xs:import namespace="http://input.template.templatebuilder.myplatfon.ru/xsd"/>
+            <xs:complexType name="PayToolData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="exp" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="expMonth" type="xs:int"/>
+                    <xs:element minOccurs="0" name="expYear" type="xs:int"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="needShow" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="number" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ownerName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="securityCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Error">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="code" type="xs:int"/>
+                    <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userMessage" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PaymentTool">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cardNumber" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cardPaymentSystemId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="expire" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ownerName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AccessRoleNameData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Limits">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="amountDayCard" type="xs:int"/>
+                    <xs:element minOccurs="0" name="amountDayClient" type="xs:int"/>
+                    <xs:element minOccurs="0" name="amountMonthCard" type="xs:int"/>
+                    <xs:element minOccurs="0" name="amountMonthClient" type="xs:int"/>
+                    <xs:element minOccurs="0" name="checkResult" type="xs:int"/>
+                    <xs:element minOccurs="0" name="limitDayCard" type="xs:int"/>
+                    <xs:element minOccurs="0" name="limitDayClient" type="xs:int"/>
+                    <xs:element minOccurs="0" name="limitMonthCard" type="xs:int"/>
+                    <xs:element minOccurs="0" name="limitMonthClient" type="xs:int"/>
+                    <xs:element minOccurs="0" name="maxSum" type="xs:int"/>
+                    <xs:element minOccurs="0" name="minSum" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Params3Ds">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="acs" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="md" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="paReq" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="paRes" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="termUrl" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PayHistoryData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DNumber" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="addInfo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cardId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="cardName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="categoryCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="categoryId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="categoryName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="fee" type="xs:float"/>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="insertDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="merchantName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="result" type="xs:long"/>
+                    <xs:element minOccurs="0" name="resultMessage" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="state" type="xs:int"/>
+                    <xs:element minOccurs="0" name="status" type="xs:long"/>
+                    <xs:element minOccurs="0" name="sum" type="xs:float"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LitePayData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DNumberData" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="addInfoData" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="summ" type="xs:float"/>
+                    <xs:element minOccurs="0" name="template" nillable="true" type="ax211:Template"/>
+                    <xs:element minOccurs="0" name="templateID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PaymentData">
+                <xs:complexContent>
+                    <xs:extension base="ax21:LitePayData">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="paymentToolId" type="xs:short"/>
+                            <xs:element minOccurs="0" name="paymentToolNumber" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="securityCode" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="BillData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="amount" type="xs:float"/>
+                    <xs:element minOccurs="0" name="article" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="date" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="debtAmount" type="xs:float"/>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="paidServiceId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="regDoc" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Merchant">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="image" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rootId" nillable="true" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Category">
+                <xs:complexContent>
+                    <xs:extension base="ax21:Merchant">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="merchants" nillable="true" type="ax21:Merchant"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MerchantInformation">
+                <xs:complexContent>
+                    <xs:extension base="ax21:Merchant">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="category" nillable="true" type="ax21:Merchant"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MerchantFullInformation">
+                <xs:complexContent>
+                    <xs:extension base="ax21:MerchantInformation">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalInfo" nillable="true" type="ax212:Group"/>
+                            <xs:element minOccurs="0" name="inputTemplateId" nillable="true" type="xs:long"/>
+                            <xs:element minOccurs="0" name="maxSum" nillable="true" type="xs:float"/>
+                            <xs:element minOccurs="0" name="minSum" nillable="true" type="xs:float"/>
+                            <xs:element minOccurs="0" name="template" nillable="true" type="ax211:Template"/>
+                            <xs:element minOccurs="0" name="webUrl" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="CntCityData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ppCode" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="recCurr" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="FavoritePayData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DNumber" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="favoritePayId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="paidServiceId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="sum" type="xs:float"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="transactionId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Contacts">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="EMail" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="INN" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="address" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="contract" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="fax" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax210="http://input.template.templatebuilder.myplatfon.ru/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://template.templatebuilder.myplatfon.ru/xsd">
+            <xs:import namespace="http://input.template.templatebuilder.myplatfon.ru/xsd"/>
+            <xs:complexType name="Template">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DNumber" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="addInfo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="groups" nillable="true" type="ax27:Group"/>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax25="http://response.data.soap.myplatfon.ru/xsd" xmlns:ax22="http://data.soap.myplatfon.ru/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soap.myplatfon.ru">
+            <xs:import namespace="http://data.soap.myplatfon.ru/xsd"/>
+            <xs:import namespace="http://response.data.soap.myplatfon.ru/xsd"/>
+            <xs:element name="addPayTool">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_payToolData" nillable="true" type="ax21:PayToolData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addPayToolResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:AddPayToolResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="authClient">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_channelId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_login" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_password" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="authClientResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:AuthResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deletePayTool">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_payToolId" type="xs:short"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deletePayToolResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:DeletePayToolResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payTools">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payToolsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:PayToolsResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payByInitial">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_initialId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_summ" type="xs:float"/>
+                        <xs:element minOccurs="0" name="_securityCode" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payByInitialResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:PayResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="regClient">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_channelId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_phoneNumber" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_password" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_repeatPassword" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="regClientResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:RegResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="bindPayTool">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_payToolId" type="xs:short"/>
+                        <xs:element minOccurs="0" name="_securityCode" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="bindPayToolResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:BindPayToolResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="activatePayTool">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_payToolId" type="xs:short"/>
+                        <xs:element minOccurs="0" name="_activateCode" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="activatePayToolResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:ActivatePayToolResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="confirmPay">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_transactionId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_password" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="confirmPayResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:ConfirmPayResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payHistory">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="_historyOnChannels" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_dateFrom" nillable="true" type="xs:date"/>
+                        <xs:element minOccurs="0" name="_dateTo" nillable="true" type="xs:date"/>
+                        <xs:element minOccurs="0" name="_state" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_summ" type="xs:float"/>
+                        <xs:element minOccurs="0" name="_merchantId" type="xs:long"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="_cardIds" type="xs:short"/>
+                        <xs:element minOccurs="0" name="_page" type="xs:int"/>
+                        <xs:element minOccurs="0" name="_itemsPerPage" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payHistoryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:PayHistoryResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sendEmail">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_toAddress" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_subject" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_body" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sendEmailResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:SendEmailResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="gibddBills">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_channelId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_paymentData" nillable="true" type="ax21:PaymentData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="gibddBillsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:GibddBillsResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCategoryList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_maxMerchants" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCategoryListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:GetCategoryListResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="restorePassword">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_channelId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_phoneNumber" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="restorePasswordResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:RestorePasswordResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cellOperator">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_phoneNumber" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cellOperatorResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:CellOperatorResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pay">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_paymentData" nillable="true" type="ax21:PaymentData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:PayResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMerchantList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_categoryId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_maxResults" type="xs:int"/>
+                        <xs:element minOccurs="0" name="_orderByName" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMerchantListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:GetMerchantListResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMerchant">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMerchantResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:GetMerchantResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCntCities">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_channelId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_countryId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCntCitiesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:GetCntCitiesResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCntBanks">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_channelId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_cityId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCntBanksResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:GetCntBanksResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTransactionState">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_transactionId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTransactionStateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:GetTransactionStateResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payFavorits">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payFavoritsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:PayFavoritsResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addFavoritePay">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_transactionId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_favoritePayId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addFavoritePayResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:AddFavoritePayResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteFavoritePay">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_favoritePayId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteFavoritePayResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:DeleteFavoritePayResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="renameFavoritePay">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_favoritePayId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="_newTitle" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="renameFavoritePayResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:RenameFavoritePayResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="fee">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_paymentData" nillable="true" type="ax21:PaymentData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="feeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:FeeResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="check">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="_sessionId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="_transactionId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="checkResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax25:CheckResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://validation.input.template.templatebuilder.myplatfon.ru/xsd">
+            <xs:complexType name="Rule">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="validateStr" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax29="http://validation.input.template.templatebuilder.myplatfon.ru/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://input.template.templatebuilder.myplatfon.ru/xsd">
+            <xs:import namespace="http://validation.input.template.templatebuilder.myplatfon.ru/xsd"/>
+            <xs:complexType name="Group">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="inputs" nillable="true" type="ax27:Input"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="templateInputs" nillable="true" type="ax27:TemplateInput"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Input">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                    <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TemplateInput">
+                <xs:complexContent>
+                    <xs:extension base="ax27:Input">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="example" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="hint" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="inputtedValue" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="options" nillable="true" type="ax27:Option"/>
+                            <xs:element minOccurs="0" name="required" nillable="true" type="xs:boolean"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="rules" nillable="true" type="ax29:Rule"/>
+                            <xs:element minOccurs="0" name="textValue" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="Option">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getCntCitiesRequest">
+        <wsdl:part name="parameters" element="ns:getCntCities"/>
+    </wsdl:message>
+    <wsdl:message name="getCntCitiesResponse">
+        <wsdl:part name="parameters" element="ns:getCntCitiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="restorePasswordRequest">
+        <wsdl:part name="parameters" element="ns:restorePassword"/>
+    </wsdl:message>
+    <wsdl:message name="restorePasswordResponse">
+        <wsdl:part name="parameters" element="ns:restorePasswordResponse"/>
+    </wsdl:message>
+    <wsdl:message name="addFavoritePayRequest">
+        <wsdl:part name="parameters" element="ns:addFavoritePay"/>
+    </wsdl:message>
+    <wsdl:message name="addFavoritePayResponse">
+        <wsdl:part name="parameters" element="ns:addFavoritePayResponse"/>
+    </wsdl:message>
+    <wsdl:message name="authClientRequest">
+        <wsdl:part name="parameters" element="ns:authClient"/>
+    </wsdl:message>
+    <wsdl:message name="authClientResponse">
+        <wsdl:part name="parameters" element="ns:authClientResponse"/>
+    </wsdl:message>
+    <wsdl:message name="payHistoryRequest">
+        <wsdl:part name="parameters" element="ns:payHistory"/>
+    </wsdl:message>
+    <wsdl:message name="payHistoryResponse">
+        <wsdl:part name="parameters" element="ns:payHistoryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="deletePayToolRequest">
+        <wsdl:part name="parameters" element="ns:deletePayTool"/>
+    </wsdl:message>
+    <wsdl:message name="deletePayToolResponse">
+        <wsdl:part name="parameters" element="ns:deletePayToolResponse"/>
+    </wsdl:message>
+    <wsdl:message name="confirmPayRequest">
+        <wsdl:part name="parameters" element="ns:confirmPay"/>
+    </wsdl:message>
+    <wsdl:message name="confirmPayResponse">
+        <wsdl:part name="parameters" element="ns:confirmPayResponse"/>
+    </wsdl:message>
+    <wsdl:message name="payRequest">
+        <wsdl:part name="parameters" element="ns:pay"/>
+    </wsdl:message>
+    <wsdl:message name="payResponse">
+        <wsdl:part name="parameters" element="ns:payResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getCategoryListRequest">
+        <wsdl:part name="parameters" element="ns:getCategoryList"/>
+    </wsdl:message>
+    <wsdl:message name="getCategoryListResponse">
+        <wsdl:part name="parameters" element="ns:getCategoryListResponse"/>
+    </wsdl:message>
+    <wsdl:message name="activatePayToolRequest">
+        <wsdl:part name="parameters" element="ns:activatePayTool"/>
+    </wsdl:message>
+    <wsdl:message name="activatePayToolResponse">
+        <wsdl:part name="parameters" element="ns:activatePayToolResponse"/>
+    </wsdl:message>
+    <wsdl:message name="feeRequest">
+        <wsdl:part name="parameters" element="ns:fee"/>
+    </wsdl:message>
+    <wsdl:message name="feeResponse">
+        <wsdl:part name="parameters" element="ns:feeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="checkRequest">
+        <wsdl:part name="parameters" element="ns:check"/>
+    </wsdl:message>
+    <wsdl:message name="checkResponse">
+        <wsdl:part name="parameters" element="ns:checkResponse"/>
+    </wsdl:message>
+    <wsdl:message name="bindPayToolRequest">
+        <wsdl:part name="parameters" element="ns:bindPayTool"/>
+    </wsdl:message>
+    <wsdl:message name="bindPayToolResponse">
+        <wsdl:part name="parameters" element="ns:bindPayToolResponse"/>
+    </wsdl:message>
+    <wsdl:message name="payToolsRequest">
+        <wsdl:part name="parameters" element="ns:payTools"/>
+    </wsdl:message>
+    <wsdl:message name="payToolsResponse">
+        <wsdl:part name="parameters" element="ns:payToolsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="cellOperatorRequest">
+        <wsdl:part name="parameters" element="ns:cellOperator"/>
+    </wsdl:message>
+    <wsdl:message name="cellOperatorResponse">
+        <wsdl:part name="parameters" element="ns:cellOperatorResponse"/>
+    </wsdl:message>
+    <wsdl:message name="addPayToolRequest">
+        <wsdl:part name="parameters" element="ns:addPayTool"/>
+    </wsdl:message>
+    <wsdl:message name="addPayToolResponse">
+        <wsdl:part name="parameters" element="ns:addPayToolResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getTransactionStateRequest">
+        <wsdl:part name="parameters" element="ns:getTransactionState"/>
+    </wsdl:message>
+    <wsdl:message name="getTransactionStateResponse">
+        <wsdl:part name="parameters" element="ns:getTransactionStateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="sendEmailRequest">
+        <wsdl:part name="parameters" element="ns:sendEmail"/>
+    </wsdl:message>
+    <wsdl:message name="sendEmailResponse">
+        <wsdl:part name="parameters" element="ns:sendEmailResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getMerchantListRequest">
+        <wsdl:part name="parameters" element="ns:getMerchantList"/>
+    </wsdl:message>
+    <wsdl:message name="getMerchantListResponse">
+        <wsdl:part name="parameters" element="ns:getMerchantListResponse"/>
+    </wsdl:message>
+    <wsdl:message name="deleteFavoritePayRequest">
+        <wsdl:part name="parameters" element="ns:deleteFavoritePay"/>
+    </wsdl:message>
+    <wsdl:message name="deleteFavoritePayResponse">
+        <wsdl:part name="parameters" element="ns:deleteFavoritePayResponse"/>
+    </wsdl:message>
+    <wsdl:message name="payByInitialRequest">
+        <wsdl:part name="parameters" element="ns:payByInitial"/>
+    </wsdl:message>
+    <wsdl:message name="payByInitialResponse">
+        <wsdl:part name="parameters" element="ns:payByInitialResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getMerchantRequest">
+        <wsdl:part name="parameters" element="ns:getMerchant"/>
+    </wsdl:message>
+    <wsdl:message name="getMerchantResponse">
+        <wsdl:part name="parameters" element="ns:getMerchantResponse"/>
+    </wsdl:message>
+    <wsdl:message name="payFavoritsRequest">
+        <wsdl:part name="parameters" element="ns:payFavorits"/>
+    </wsdl:message>
+    <wsdl:message name="payFavoritsResponse">
+        <wsdl:part name="parameters" element="ns:payFavoritsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="gibddBillsRequest">
+        <wsdl:part name="parameters" element="ns:gibddBills"/>
+    </wsdl:message>
+    <wsdl:message name="gibddBillsResponse">
+        <wsdl:part name="parameters" element="ns:gibddBillsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="regClientRequest">
+        <wsdl:part name="parameters" element="ns:regClient"/>
+    </wsdl:message>
+    <wsdl:message name="regClientResponse">
+        <wsdl:part name="parameters" element="ns:regClientResponse"/>
+    </wsdl:message>
+    <wsdl:message name="renameFavoritePayRequest">
+        <wsdl:part name="parameters" element="ns:renameFavoritePay"/>
+    </wsdl:message>
+    <wsdl:message name="renameFavoritePayResponse">
+        <wsdl:part name="parameters" element="ns:renameFavoritePayResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getCntBanksRequest">
+        <wsdl:part name="parameters" element="ns:getCntBanks"/>
+    </wsdl:message>
+    <wsdl:message name="getCntBanksResponse">
+        <wsdl:part name="parameters" element="ns:getCntBanksResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="bankingPortType">
+        <wsdl:operation name="getCntCities">
+            <wsdl:input message="ns:getCntCitiesRequest" wsaw:Action="urn:getCntCities"/>
+            <wsdl:output message="ns:getCntCitiesResponse" wsaw:Action="urn:getCntCitiesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="restorePassword">
+            <wsdl:input message="ns:restorePasswordRequest" wsaw:Action="urn:restorePassword"/>
+            <wsdl:output message="ns:restorePasswordResponse" wsaw:Action="urn:restorePasswordResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addFavoritePay">
+            <wsdl:input message="ns:addFavoritePayRequest" wsaw:Action="urn:addFavoritePay"/>
+            <wsdl:output message="ns:addFavoritePayResponse" wsaw:Action="urn:addFavoritePayResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="authClient">
+            <wsdl:input message="ns:authClientRequest" wsaw:Action="urn:authClient"/>
+            <wsdl:output message="ns:authClientResponse" wsaw:Action="urn:authClientResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="payHistory">
+            <wsdl:input message="ns:payHistoryRequest" wsaw:Action="urn:payHistory"/>
+            <wsdl:output message="ns:payHistoryResponse" wsaw:Action="urn:payHistoryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deletePayTool">
+            <wsdl:input message="ns:deletePayToolRequest" wsaw:Action="urn:deletePayTool"/>
+            <wsdl:output message="ns:deletePayToolResponse" wsaw:Action="urn:deletePayToolResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="confirmPay">
+            <wsdl:input message="ns:confirmPayRequest" wsaw:Action="urn:confirmPay"/>
+            <wsdl:output message="ns:confirmPayResponse" wsaw:Action="urn:confirmPayResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="pay">
+            <wsdl:input message="ns:payRequest" wsaw:Action="urn:pay"/>
+            <wsdl:output message="ns:payResponse" wsaw:Action="urn:payResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getCategoryList">
+            <wsdl:input message="ns:getCategoryListRequest" wsaw:Action="urn:getCategoryList"/>
+            <wsdl:output message="ns:getCategoryListResponse" wsaw:Action="urn:getCategoryListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="activatePayTool">
+            <wsdl:input message="ns:activatePayToolRequest" wsaw:Action="urn:activatePayTool"/>
+            <wsdl:output message="ns:activatePayToolResponse" wsaw:Action="urn:activatePayToolResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="fee">
+            <wsdl:input message="ns:feeRequest" wsaw:Action="urn:fee"/>
+            <wsdl:output message="ns:feeResponse" wsaw:Action="urn:feeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="check">
+            <wsdl:input message="ns:checkRequest" wsaw:Action="urn:check"/>
+            <wsdl:output message="ns:checkResponse" wsaw:Action="urn:checkResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="bindPayTool">
+            <wsdl:input message="ns:bindPayToolRequest" wsaw:Action="urn:bindPayTool"/>
+            <wsdl:output message="ns:bindPayToolResponse" wsaw:Action="urn:bindPayToolResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="payTools">
+            <wsdl:input message="ns:payToolsRequest" wsaw:Action="urn:payTools"/>
+            <wsdl:output message="ns:payToolsResponse" wsaw:Action="urn:payToolsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="cellOperator">
+            <wsdl:input message="ns:cellOperatorRequest" wsaw:Action="urn:cellOperator"/>
+            <wsdl:output message="ns:cellOperatorResponse" wsaw:Action="urn:cellOperatorResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addPayTool">
+            <wsdl:input message="ns:addPayToolRequest" wsaw:Action="urn:addPayTool"/>
+            <wsdl:output message="ns:addPayToolResponse" wsaw:Action="urn:addPayToolResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getTransactionState">
+            <wsdl:input message="ns:getTransactionStateRequest" wsaw:Action="urn:getTransactionState"/>
+            <wsdl:output message="ns:getTransactionStateResponse" wsaw:Action="urn:getTransactionStateResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="sendEmail">
+            <wsdl:input message="ns:sendEmailRequest" wsaw:Action="urn:sendEmail"/>
+            <wsdl:output message="ns:sendEmailResponse" wsaw:Action="urn:sendEmailResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMerchantList">
+            <wsdl:input message="ns:getMerchantListRequest" wsaw:Action="urn:getMerchantList"/>
+            <wsdl:output message="ns:getMerchantListResponse" wsaw:Action="urn:getMerchantListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteFavoritePay">
+            <wsdl:input message="ns:deleteFavoritePayRequest" wsaw:Action="urn:deleteFavoritePay"/>
+            <wsdl:output message="ns:deleteFavoritePayResponse" wsaw:Action="urn:deleteFavoritePayResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="payByInitial">
+            <wsdl:input message="ns:payByInitialRequest" wsaw:Action="urn:payByInitial"/>
+            <wsdl:output message="ns:payByInitialResponse" wsaw:Action="urn:payByInitialResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMerchant">
+            <wsdl:input message="ns:getMerchantRequest" wsaw:Action="urn:getMerchant"/>
+            <wsdl:output message="ns:getMerchantResponse" wsaw:Action="urn:getMerchantResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="payFavorits">
+            <wsdl:input message="ns:payFavoritsRequest" wsaw:Action="urn:payFavorits"/>
+            <wsdl:output message="ns:payFavoritsResponse" wsaw:Action="urn:payFavoritsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="gibddBills">
+            <wsdl:input message="ns:gibddBillsRequest" wsaw:Action="urn:gibddBills"/>
+            <wsdl:output message="ns:gibddBillsResponse" wsaw:Action="urn:gibddBillsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="regClient">
+            <wsdl:input message="ns:regClientRequest" wsaw:Action="urn:regClient"/>
+            <wsdl:output message="ns:regClientResponse" wsaw:Action="urn:regClientResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="renameFavoritePay">
+            <wsdl:input message="ns:renameFavoritePayRequest" wsaw:Action="urn:renameFavoritePay"/>
+            <wsdl:output message="ns:renameFavoritePayResponse" wsaw:Action="urn:renameFavoritePayResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getCntBanks">
+            <wsdl:input message="ns:getCntBanksRequest" wsaw:Action="urn:getCntBanks"/>
+            <wsdl:output message="ns:getCntBanksResponse" wsaw:Action="urn:getCntBanksResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="bankingSoap11Binding" type="ns:bankingPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="restorePassword">
+            <soap:operation soapAction="urn:restorePassword" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCntCities">
+            <soap:operation soapAction="urn:getCntCities" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addFavoritePay">
+            <soap:operation soapAction="urn:addFavoritePay" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="authClient">
+            <soap:operation soapAction="urn:authClient" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payHistory">
+            <soap:operation soapAction="urn:payHistory" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deletePayTool">
+            <soap:operation soapAction="urn:deletePayTool" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="confirmPay">
+            <soap:operation soapAction="urn:confirmPay" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="pay">
+            <soap:operation soapAction="urn:pay" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCategoryList">
+            <soap:operation soapAction="urn:getCategoryList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="activatePayTool">
+            <soap:operation soapAction="urn:activatePayTool" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="fee">
+            <soap:operation soapAction="urn:fee" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="check">
+            <soap:operation soapAction="urn:check" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payTools">
+            <soap:operation soapAction="urn:payTools" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="bindPayTool">
+            <soap:operation soapAction="urn:bindPayTool" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cellOperator">
+            <soap:operation soapAction="urn:cellOperator" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addPayTool">
+            <soap:operation soapAction="urn:addPayTool" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTransactionState">
+            <soap:operation soapAction="urn:getTransactionState" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sendEmail">
+            <soap:operation soapAction="urn:sendEmail" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMerchantList">
+            <soap:operation soapAction="urn:getMerchantList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteFavoritePay">
+            <soap:operation soapAction="urn:deleteFavoritePay" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payByInitial">
+            <soap:operation soapAction="urn:payByInitial" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMerchant">
+            <soap:operation soapAction="urn:getMerchant" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payFavorits">
+            <soap:operation soapAction="urn:payFavorits" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="regClient">
+            <soap:operation soapAction="urn:regClient" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="gibddBills">
+            <soap:operation soapAction="urn:gibddBills" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="renameFavoritePay">
+            <soap:operation soapAction="urn:renameFavoritePay" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCntBanks">
+            <soap:operation soapAction="urn:getCntBanks" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="bankingSoap12Binding" type="ns:bankingPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="restorePassword">
+            <soap12:operation soapAction="urn:restorePassword" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCntCities">
+            <soap12:operation soapAction="urn:getCntCities" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addFavoritePay">
+            <soap12:operation soapAction="urn:addFavoritePay" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="authClient">
+            <soap12:operation soapAction="urn:authClient" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payHistory">
+            <soap12:operation soapAction="urn:payHistory" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deletePayTool">
+            <soap12:operation soapAction="urn:deletePayTool" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="confirmPay">
+            <soap12:operation soapAction="urn:confirmPay" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="pay">
+            <soap12:operation soapAction="urn:pay" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCategoryList">
+            <soap12:operation soapAction="urn:getCategoryList" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="activatePayTool">
+            <soap12:operation soapAction="urn:activatePayTool" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="fee">
+            <soap12:operation soapAction="urn:fee" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="check">
+            <soap12:operation soapAction="urn:check" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payTools">
+            <soap12:operation soapAction="urn:payTools" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="bindPayTool">
+            <soap12:operation soapAction="urn:bindPayTool" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cellOperator">
+            <soap12:operation soapAction="urn:cellOperator" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addPayTool">
+            <soap12:operation soapAction="urn:addPayTool" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTransactionState">
+            <soap12:operation soapAction="urn:getTransactionState" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sendEmail">
+            <soap12:operation soapAction="urn:sendEmail" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMerchantList">
+            <soap12:operation soapAction="urn:getMerchantList" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteFavoritePay">
+            <soap12:operation soapAction="urn:deleteFavoritePay" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payByInitial">
+            <soap12:operation soapAction="urn:payByInitial" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMerchant">
+            <soap12:operation soapAction="urn:getMerchant" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payFavorits">
+            <soap12:operation soapAction="urn:payFavorits" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="regClient">
+            <soap12:operation soapAction="urn:regClient" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="gibddBills">
+            <soap12:operation soapAction="urn:gibddBills" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="renameFavoritePay">
+            <soap12:operation soapAction="urn:renameFavoritePay" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCntBanks">
+            <soap12:operation soapAction="urn:getCntBanks" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="bankingHttpBinding" type="ns:bankingPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="restorePassword">
+            <http:operation location="restorePassword"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCntCities">
+            <http:operation location="getCntCities"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addFavoritePay">
+            <http:operation location="addFavoritePay"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="authClient">
+            <http:operation location="authClient"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payHistory">
+            <http:operation location="payHistory"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deletePayTool">
+            <http:operation location="deletePayTool"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="confirmPay">
+            <http:operation location="confirmPay"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="pay">
+            <http:operation location="pay"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCategoryList">
+            <http:operation location="getCategoryList"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="activatePayTool">
+            <http:operation location="activatePayTool"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="fee">
+            <http:operation location="fee"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="check">
+            <http:operation location="check"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payTools">
+            <http:operation location="payTools"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="bindPayTool">
+            <http:operation location="bindPayTool"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cellOperator">
+            <http:operation location="cellOperator"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addPayTool">
+            <http:operation location="addPayTool"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTransactionState">
+            <http:operation location="getTransactionState"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sendEmail">
+            <http:operation location="sendEmail"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMerchantList">
+            <http:operation location="getMerchantList"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteFavoritePay">
+            <http:operation location="deleteFavoritePay"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payByInitial">
+            <http:operation location="payByInitial"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMerchant">
+            <http:operation location="getMerchant"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payFavorits">
+            <http:operation location="payFavorits"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="regClient">
+            <http:operation location="regClient"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="gibddBills">
+            <http:operation location="gibddBills"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="renameFavoritePay">
+            <http:operation location="renameFavoritePay"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCntBanks">
+            <http:operation location="getCntBanks"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="banking">
+        <wsdl:port name="bankingHttpSoap11Endpoint" binding="ns:bankingSoap11Binding">
+            <soap:address location="http://10.0.2.29:8080/axis2/services/banking.bankingHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="bankingHttpSoap12Endpoint" binding="ns:bankingSoap12Binding">
+            <soap12:address location="http://10.0.2.29:8080/axis2/services/banking.bankingHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="bankingHttpEndpoint" binding="ns:bankingHttpBinding">
+            <http:address location="http://10.0.2.29:8080/axis2/services/banking.bankingHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
