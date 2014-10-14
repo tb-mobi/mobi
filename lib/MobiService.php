@@ -1,10 +1,11 @@
 <?php
-class MobiService{
+class MobiService extends Tym{
 	protected $channelId=5;
 	protected $options=array();
 	protected $soapSrv=null;
 	protected $soalCall=null;
 	public function __construct(){
+		$this->logger=Logger::getLogger(__CLASS__);
 		$this->options= array( 
 			'location'=>MOBI_SERIVCE_URL
 			,'uri'=>MOBI_WSDL_LOCATION
@@ -30,16 +31,21 @@ class MobiService{
 				}
 				if(isset($request["mobi"]["needchannel"])&&$request["mobi"]["needchannel"])$data["_channel"]=$this->channel;
 				$_call=$this->soapCall;
-				return new MerchantForm($this->soapSrv->$_call($data));
+				$ret=$this->soapSrv->$_call($data);
+				if(isset($request["mobi"]["response"]))$ret=new $request["mobi"]["response"]($ret);
+				$this->logger->debug("Request: ".$this->soapSrv->__getLastRequest());
+				$this->logger->debug("Response: ".$this->soapSrv->__getLastResponse());
+				print_r($ret);
+				return $ret;
 			}
 		} catch (Exception $e) {  
 			echo $e->getMessage(); 
 		}
 	}
-	public function __toString(){
+	/*public function __toString(){
 		return "<h2>Request</h2><pre>".htmlspecialchars($this->soapSrv->__getLastRequest())."</pre>"
 			."<h2>Response</h2><pre>".htmlspecialchars($this->soapSrv->__getLastResponse())."</pre>";
-	}
+	}*/
 	protected $noparams=array("url","session","request");
 	protected $implemented=array(
 		"test"=>array(
@@ -53,12 +59,21 @@ class MobiService{
 			"mobi"=>array(
 				"request"=>"getCategoryList"
 				,"params"=>array()
+				,"response"=>"Categories"
 			)
 		)
 		,"merchant"=>array(
 			"mobi"=>array(
 				"request"=>"getMerchant"
 				,"params"=>array("id"=>"_id")
+				,"response"=>"MerchantForm"
+			)
+		)
+		,"merchants"=>array(
+			"mobi"=>array(
+				"request"=>"getMerchantList"
+				,"params"=>array("id"=>"_categoryId")
+				,"response"=>"Category"
 			)
 		)
 		,"auth"=>array(

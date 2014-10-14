@@ -1,0 +1,631 @@
+2014-10-14T16:59:39+04:00 [7924] C:\Users\bushuev\Documents\Programs\nginx-1.7.4\html\mobi\lib\MerchantForm.php line 28 MerchantForm DEBUG <form></form>
+2014-10-14T16:59:39+04:00 [7924] C:\Users\bushuev\Documents\Programs\nginx-1.7.4\html\mobi\lib\MobiService.php line 36 MobiService DEBUG Request: <?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://soap.myplatfon.ru"><env:Body><ns1:getMerchant><ns1:_id>359</ns1:_id></ns1:getMerchant></env:Body></env:Envelope>
+
+2014-10-14T16:59:39+04:00 [7924] C:\Users\bushuev\Documents\Programs\nginx-1.7.4\html\mobi\lib\MobiService.php line 37 MobiService DEBUG Response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"><soapenv:Body><ns:getMerchantResponse xmlns:ns="http://soap.myplatfon.ru"><ns:return xmlns:ax21="http://data.soap.myplatfon.ru/xsd" xmlns:ax27="http://input.template.templatebuilder.myplatfon.ru/xsd" xmlns:ax28="http://validation.input.template.templatebuilder.myplatfon.ru/xsd" xmlns:ax26="http://template.templatebuilder.myplatfon.ru/xsd" xmlns:ax23="http://response.data.soap.myplatfon.ru/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ax23:GetMerchantResponse"><ax23:error xsi:type="ax21:Error"><ax21:code>0</ax21:code><ax21:description xsi:nil="true" /><ax21:userMessage>Операция выполнена успешно.</ax21:userMessage></ax23:error><ax23:merchantInfo xsi:type="ax21:MerchantFullInformation"><ax21:code>akado-ekaterinburg</ax21:code><ax21:id>359</ax21:id><ax21:image>akado.png</ax21:image><ax21:name>АКАДО Екатеринбург</ax21:name><ax21:rootId>910</ax21:rootId><ax21:category xsi:type="ax21:MerchantInformation"><ax21:code>internet-and-phone</ax21:code><ax21:id>910</ax21:id><ax21:image>Internet_phone.gif</ax21:image><ax21:name>Интернет, телефония и ТВ</ax21:name><ax21:rootId>0</ax21:rootId><ax21:category xsi:nil="true" /></ax21:category><ax21:additionalInfo xsi:nil="true" /><ax21:inputTemplateId>359</ax21:inputTemplateId><ax21:maxSum>15000.0</ax21:maxSum><ax21:minSum>100.0</ax21:minSum><ax21:template><ax26:DNumber></ax26:DNumber><ax26:addInfo xsi:nil="true" /><ax26:description xsi:nil="true" /><ax26:groups><ax27:id>basicRequisite</ax27:id><ax27:inputs xsi:type="ax27:TemplateInput"><ax27:id>field_0</ax27:id><ax27:type>1</ax27:type><ax27:value xsi:nil="true" /><ax27:example>до 10 цифр</ax27:example><ax27:hint xsi:nil="true" /><ax27:inputtedValue xsi:nil="true" /><ax27:options xsi:nil="true" /><ax27:required xsi:nil="true" /><ax27:rules><ax28:id>1</ax28:id><ax28:message>В поле должно быть числовое значение от 1 до 10 знаков.</ax28:message><ax28:validateStr>^[\d]{0,10}$</ax28:validateStr><ax28:length>10</ax28:length></ax27:rules><ax27:textValue xsi:nil="true" /><ax27:title>Номер счета</ax27:title></ax27:inputs><ax27:templateInputs xsi:type="ax27:TemplateInput"><ax27:id>field_0</ax27:id><ax27:type>1</ax27:type><ax27:value xsi:nil="true" /><ax27:example>до 10 цифр</ax27:example><ax27:hint xsi:nil="true" /><ax27:inputtedValue xsi:nil="true" /><ax27:options xsi:nil="true" /><ax27:required xsi:nil="true" /><ax27:rules><ax28:id>1</ax28:id><ax28:message>В поле должно быть числовое значение от 1 до 10 знаков.</ax28:message><ax28:validateStr>^[\d]{0,10}$</ax28:validateStr><ax28:length>10</ax28:length></ax27:rules><ax27:textValue xsi:nil="true" /><ax27:title>Номер счета</ax27:title></ax27:templateInputs><ax27:title>Основные реквизиты</ax27:title><ax27:delimiter xsi:nil="true" /><ax27:formatString>%%field_0</ax27:formatString></ax26:groups><ax26:id xsi:nil="true" /><ax26:title>АКАДО-Екатеринбург</ax26:title></ax21:template><ax21:webUrl xsi:nil="true" /></ax23:merchantInfo></ns:return></ns:getMerchantResponse></soapenv:Body></soapenv:Envelope>
+2014-10-14T16:59:39+04:00 [7924] C:\Users\bushuev\Documents\Programs\nginx-1.7.4\html\mobi\merchant\index.php line 6 root WARN  MerchantForm Object
+(
+    [parseString:protected] => success
+    [rawObj:protected] => stdClass Object
+        (
+            [return] => stdClass Object
+                (
+                    [error] => stdClass Object
+                        (
+                            [code] => 0
+                            [description] => 
+                            [userMessage] => Операция выполнена успешно.
+                        )
+
+                    [merchantInfo] => stdClass Object
+                        (
+                            [code] => akado-ekaterinburg
+                            [id] => 359
+                            [image] => akado.png
+                            [name] => АКАДО Екатеринбург
+                            [rootId] => 910
+                            [category] => stdClass Object
+                                (
+                                    [code] => internet-and-phone
+                                    [id] => 910
+                                    [image] => Internet_phone.gif
+                                    [name] => Интернет, телефония и ТВ
+                                    [rootId] => 0
+                                    [category] => 
+                                )
+
+                            [additionalInfo] => 
+                            [inputTemplateId] => 359
+                            [maxSum] => 15000
+                            [minSum] => 100
+                            [template] => stdClass Object
+                                (
+                                    [DNumber] => 
+                                    [addInfo] => 
+                                    [description] => 
+                                    [groups] => stdClass Object
+                                        (
+                                            [id] => basicRequisite
+                                            [inputs] => stdClass Object
+                                                (
+                                                    [id] => field_0
+                                                    [type] => 1
+                                                    [value] => 
+                                                    [example] => до 10 цифр
+                                                    [hint] => 
+                                                    [inputtedValue] => 
+                                                    [options] => 
+                                                    [required] => 
+                                                    [rules] => stdClass Object
+                                                        (
+                                                            [id] => 1
+                                                            [message] => В поле должно быть числовое значение от 1 до 10 знаков.
+                                                            [validateStr] => ^[\d]{0,10}$
+                                                        )
+
+                                                    [textValue] => 
+                                                    [title] => Номер счета
+                                                )
+
+                                            [templateInputs] => stdClass Object
+                                                (
+                                                    [id] => field_0
+                                                    [type] => 1
+                                                    [value] => 
+                                                    [example] => до 10 цифр
+                                                    [hint] => 
+                                                    [inputtedValue] => 
+                                                    [options] => 
+                                                    [required] => 
+                                                    [rules] => stdClass Object
+                                                        (
+                                                            [id] => 1
+                                                            [message] => В поле должно быть числовое значение от 1 до 10 знаков.
+                                                            [validateStr] => ^[\d]{0,10}$
+                                                        )
+
+                                                    [textValue] => 
+                                                    [title] => Номер счета
+                                                )
+
+                                            [title] => Основные реквизиты
+                                        )
+
+                                    [id] => 
+                                    [title] => АКАДО-Екатеринбург
+                                )
+
+                            [webUrl] => 
+                        )
+
+                )
+
+        )
+
+    [inputs:protected] => Array
+        (
+        )
+
+    [params:protected] => Array
+        (
+            [maxSum] => 15000
+            [minSum] => 100
+            [code] => akado-ekaterinburg
+            [id] => 359
+            [image] => akado.png
+            [name] => АКАДО Екатеринбург
+            [title] => АКАДО-Екатеринбург
+        )
+
+    [logger:protected] => Logger Object
+        (
+            [additive:Logger:private] => 1
+            [fqcn:Logger:private] => Logger
+            [level:Logger:private] => LoggerLevel Object
+                (
+                    [level:LoggerLevel:private] => 5000
+                    [levelStr:LoggerLevel:private] => TRACE
+                    [syslogEquivalent:LoggerLevel:private] => 6
+                )
+
+            [name:Logger:private] => MerchantForm
+            [parent:Logger:private] => LoggerRoot Object
+                (
+                    [additive:Logger:private] => 1
+                    [fqcn:Logger:private] => Logger
+                    [level:Logger:private] => LoggerLevel Object
+                        (
+                            [level:LoggerLevel:private] => 5000
+                            [levelStr:LoggerLevel:private] => TRACE
+                            [syslogEquivalent:LoggerLevel:private] => 6
+                        )
+
+                    [name:Logger:private] => root
+                    [parent:Logger:private] => 
+                    [appenders:Logger:private] => Array
+                        (
+                            [common] => LoggerAppenderDailyFile Object
+                                (
+                                    [datePattern:protected] => Y-m-d
+                                    [currentDate:protected] => 2014-10-14
+                                    [locking:protected] => 1
+                                    [append:protected] => 1
+                                    [file:protected] => ../log/common-%s.log
+                                    [fp:protected] => Resource id #51
+                                    [closed:protected] => 
+                                    [filter:protected] => 
+                                    [layout:protected] => LoggerLayoutPattern Object
+                                        (
+                                            [pattern:protected] => %date [%pid] %file line %line %logger %-5level %msg%n
+                                            [converterMap:protected] => Array
+                                                (
+                                                    [c] => LoggerPatternConverterLogger
+                                                    [lo] => LoggerPatternConverterLogger
+                                                    [logger] => LoggerPatternConverterLogger
+                                                    [C] => LoggerPatternConverterClass
+                                                    [class] => LoggerPatternConverterClass
+                                                    [cookie] => LoggerPatternConverterCookie
+                                                    [d] => LoggerPatternConverterDate
+                                                    [date] => LoggerPatternConverterDate
+                                                    [e] => LoggerPatternConverterEnvironment
+                                                    [env] => LoggerPatternConverterEnvironment
+                                                    [ex] => LoggerPatternConverterThrowable
+                                                    [exception] => LoggerPatternConverterThrowable
+                                                    [throwable] => LoggerPatternConverterThrowable
+                                                    [F] => LoggerPatternConverterFile
+                                                    [file] => LoggerPatternConverterFile
+                                                    [l] => LoggerPatternConverterLocation
+                                                    [location] => LoggerPatternConverterLocation
+                                                    [L] => LoggerPatternConverterLine
+                                                    [line] => LoggerPatternConverterLine
+                                                    [m] => LoggerPatternConverterMessage
+                                                    [msg] => LoggerPatternConverterMessage
+                                                    [message] => LoggerPatternConverterMessage
+                                                    [M] => LoggerPatternConverterMethod
+                                                    [method] => LoggerPatternConverterMethod
+                                                    [n] => LoggerPatternConverterNewLine
+                                                    [newline] => LoggerPatternConverterNewLine
+                                                    [p] => LoggerPatternConverterLevel
+                                                    [le] => LoggerPatternConverterLevel
+                                                    [level] => LoggerPatternConverterLevel
+                                                    [r] => LoggerPatternConverterRelative
+                                                    [relative] => LoggerPatternConverterRelative
+                                                    [req] => LoggerPatternConverterRequest
+                                                    [request] => LoggerPatternConverterRequest
+                                                    [s] => LoggerPatternConverterServer
+                                                    [server] => LoggerPatternConverterServer
+                                                    [ses] => LoggerPatternConverterSession
+                                                    [session] => LoggerPatternConverterSession
+                                                    [sid] => LoggerPatternConverterSessionID
+                                                    [sessionid] => LoggerPatternConverterSessionID
+                                                    [t] => LoggerPatternConverterProcess
+                                                    [pid] => LoggerPatternConverterProcess
+                                                    [process] => LoggerPatternConverterProcess
+                                                    [x] => LoggerPatternConverterNDC
+                                                    [ndc] => LoggerPatternConverterNDC
+                                                    [X] => LoggerPatternConverterMDC
+                                                    [mdc] => LoggerPatternConverterMDC
+                                                )
+
+                                            [head:LoggerLayoutPattern:private] => LoggerPatternConverterDate Object
+                                                (
+                                                    [format:LoggerPatternConverterDate:private] => c
+                                                    [specials:LoggerPatternConverterDate:private] => Array
+                                                        (
+                                                            [ISO8601] => c
+                                                            [ABSOLUTE] => H:i:s
+                                                            [DATE] => d M Y H:i:s.u
+                                                        )
+
+                                                    [useLocalDate:LoggerPatternConverterDate:private] => 
+                                                    [next] => LoggerPatternConverterLiteral Object
+                                                        (
+                                                            [literalValue:LoggerPatternConverterLiteral:private] =>  [
+                                                            [next] => LoggerPatternConverterProcess Object
+                                                                (
+                                                                    [next] => LoggerPatternConverterLiteral Object
+                                                                        (
+                                                                            [literalValue:LoggerPatternConverterLiteral:private] => ] 
+                                                                            [next] => LoggerPatternConverterFile Object
+                                                                                (
+                                                                                    [next] => LoggerPatternConverterLiteral Object
+                                                                                        (
+                                                                                            [literalValue:LoggerPatternConverterLiteral:private] =>  line 
+                                                                                            [next] => LoggerPatternConverterLine Object
+                                                                                                (
+                                                                                                    [next] => LoggerPatternConverterLiteral Object
+                                                                                                        (
+                                                                                                            [literalValue:LoggerPatternConverterLiteral:private] =>  
+                                                                                                            [next] => LoggerPatternConverterLogger Object
+                                                                                                                (
+                                                                                                                    [length:LoggerPatternConverterLogger:private] => 
+                                                                                                                    [cache:LoggerPatternConverterLogger:private] => Array
+                                                                                                                        (
+                                                                                                                            [MerchantForm] => MerchantForm
+                                                                                                                            [MobiService] => MobiService
+                                                                                                                        )
+
+                                                                                                                    [next] => LoggerPatternConverterLiteral Object
+                                                                                                                        (
+                                                                                                                            [literalValue:LoggerPatternConverterLiteral:private] =>  
+                                                                                                                            [next] => LoggerPatternConverterLevel Object
+                                                                                                                                (
+                                                                                                                                    [next] => LoggerPatternConverterLiteral Object
+                                                                                                                                        (
+                                                                                                                                            [literalValue:LoggerPatternConverterLiteral:private] =>  
+                                                                                                                                            [next] => LoggerPatternConverterMessage Object
+                                                                                                                                                (
+                                                                                                                                                    [next] => LoggerPatternConverterNewLine Object
+                                                                                                                                                        (
+                                                                                                                                                            [next] => 
+                                                                                                                                                            [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                                                                                (
+                                                                                                                                                                    [min] => 0
+                                                                                                                                                                    [max] => 2147483647
+                                                                                                                                                                    [padLeft] => 1
+                                                                                                                                                                    [trimLeft] => 
+                                                                                                                                                                )
+
+                                                                                                                                                            [option:protected] => 
+                                                                                                                                                        )
+
+                                                                                                                                                    [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                                                                        (
+                                                                                                                                                            [min] => 0
+                                                                                                                                                            [max] => 2147483647
+                                                                                                                                                            [padLeft] => 1
+                                                                                                                                                            [trimLeft] => 
+                                                                                                                                                        )
+
+                                                                                                                                                    [option:protected] => 
+                                                                                                                                                )
+
+                                                                                                                                            [formattingInfo:protected] => 
+                                                                                                                                            [option:protected] => 
+                                                                                                                                        )
+
+                                                                                                                                    [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                                                        (
+                                                                                                                                            [min] => 5
+                                                                                                                                            [max] => 2147483647
+                                                                                                                                            [padLeft] => 
+                                                                                                                                            [trimLeft] => 
+                                                                                                                                        )
+
+                                                                                                                                    [option:protected] => 
+                                                                                                                                )
+
+                                                                                                                            [formattingInfo:protected] => 
+                                                                                                                            [option:protected] => 
+                                                                                                                        )
+
+                                                                                                                    [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                                        (
+                                                                                                                            [min] => 0
+                                                                                                                            [max] => 2147483647
+                                                                                                                            [padLeft] => 1
+                                                                                                                            [trimLeft] => 
+                                                                                                                        )
+
+                                                                                                                    [option:protected] => 
+                                                                                                                )
+
+                                                                                                            [formattingInfo:protected] => 
+                                                                                                            [option:protected] => 
+                                                                                                        )
+
+                                                                                                    [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                        (
+                                                                                                            [min] => 0
+                                                                                                            [max] => 2147483647
+                                                                                                            [padLeft] => 1
+                                                                                                            [trimLeft] => 
+                                                                                                        )
+
+                                                                                                    [option:protected] => 
+                                                                                                )
+
+                                                                                            [formattingInfo:protected] => 
+                                                                                            [option:protected] => 
+                                                                                        )
+
+                                                                                    [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                        (
+                                                                                            [min] => 0
+                                                                                            [max] => 2147483647
+                                                                                            [padLeft] => 1
+                                                                                            [trimLeft] => 
+                                                                                        )
+
+                                                                                    [option:protected] => 
+                                                                                )
+
+                                                                            [formattingInfo:protected] => 
+                                                                            [option:protected] => 
+                                                                        )
+
+                                                                    [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                        (
+                                                                            [min] => 0
+                                                                            [max] => 2147483647
+                                                                            [padLeft] => 1
+                                                                            [trimLeft] => 
+                                                                        )
+
+                                                                    [option:protected] => 
+                                                                )
+
+                                                            [formattingInfo:protected] => 
+                                                            [option:protected] => 
+                                                        )
+
+                                                    [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                        (
+                                                            [min] => 0
+                                                            [max] => 2147483647
+                                                            [padLeft] => 1
+                                                            [trimLeft] => 
+                                                        )
+
+                                                    [option:protected] => 
+                                                )
+
+                                        )
+
+                                    [name:protected] => common
+                                    [threshold:protected] => 
+                                    [requiresLayout:protected] => 1
+                                )
+
+                        )
+
+                )
+
+            [appenders:Logger:private] => Array
+                (
+                    [service] => LoggerAppenderDailyFile Object
+                        (
+                            [datePattern:protected] => Y-m-d
+                            [currentDate:protected] => 2014-10-14
+                            [locking:protected] => 1
+                            [append:protected] => 1
+                            [file:protected] => ../log/service-%s.log
+                            [fp:protected] => Resource id #50
+                            [closed:protected] => 
+                            [filter:protected] => 
+                            [layout:protected] => LoggerLayoutPattern Object
+                                (
+                                    [pattern:protected] => %date [%pid] %class.%line %logger %-5level %msg%n
+                                    [converterMap:protected] => Array
+                                        (
+                                            [c] => LoggerPatternConverterLogger
+                                            [lo] => LoggerPatternConverterLogger
+                                            [logger] => LoggerPatternConverterLogger
+                                            [C] => LoggerPatternConverterClass
+                                            [class] => LoggerPatternConverterClass
+                                            [cookie] => LoggerPatternConverterCookie
+                                            [d] => LoggerPatternConverterDate
+                                            [date] => LoggerPatternConverterDate
+                                            [e] => LoggerPatternConverterEnvironment
+                                            [env] => LoggerPatternConverterEnvironment
+                                            [ex] => LoggerPatternConverterThrowable
+                                            [exception] => LoggerPatternConverterThrowable
+                                            [throwable] => LoggerPatternConverterThrowable
+                                            [F] => LoggerPatternConverterFile
+                                            [file] => LoggerPatternConverterFile
+                                            [l] => LoggerPatternConverterLocation
+                                            [location] => LoggerPatternConverterLocation
+                                            [L] => LoggerPatternConverterLine
+                                            [line] => LoggerPatternConverterLine
+                                            [m] => LoggerPatternConverterMessage
+                                            [msg] => LoggerPatternConverterMessage
+                                            [message] => LoggerPatternConverterMessage
+                                            [M] => LoggerPatternConverterMethod
+                                            [method] => LoggerPatternConverterMethod
+                                            [n] => LoggerPatternConverterNewLine
+                                            [newline] => LoggerPatternConverterNewLine
+                                            [p] => LoggerPatternConverterLevel
+                                            [le] => LoggerPatternConverterLevel
+                                            [level] => LoggerPatternConverterLevel
+                                            [r] => LoggerPatternConverterRelative
+                                            [relative] => LoggerPatternConverterRelative
+                                            [req] => LoggerPatternConverterRequest
+                                            [request] => LoggerPatternConverterRequest
+                                            [s] => LoggerPatternConverterServer
+                                            [server] => LoggerPatternConverterServer
+                                            [ses] => LoggerPatternConverterSession
+                                            [session] => LoggerPatternConverterSession
+                                            [sid] => LoggerPatternConverterSessionID
+                                            [sessionid] => LoggerPatternConverterSessionID
+                                            [t] => LoggerPatternConverterProcess
+                                            [pid] => LoggerPatternConverterProcess
+                                            [process] => LoggerPatternConverterProcess
+                                            [x] => LoggerPatternConverterNDC
+                                            [ndc] => LoggerPatternConverterNDC
+                                            [X] => LoggerPatternConverterMDC
+                                            [mdc] => LoggerPatternConverterMDC
+                                        )
+
+                                    [head:LoggerLayoutPattern:private] => LoggerPatternConverterDate Object
+                                        (
+                                            [format:LoggerPatternConverterDate:private] => c
+                                            [specials:LoggerPatternConverterDate:private] => Array
+                                                (
+                                                    [ISO8601] => c
+                                                    [ABSOLUTE] => H:i:s
+                                                    [DATE] => d M Y H:i:s.u
+                                                )
+
+                                            [useLocalDate:LoggerPatternConverterDate:private] => 
+                                            [next] => LoggerPatternConverterLiteral Object
+                                                (
+                                                    [literalValue:LoggerPatternConverterLiteral:private] =>  [
+                                                    [next] => LoggerPatternConverterProcess Object
+                                                        (
+                                                            [next] => LoggerPatternConverterLiteral Object
+                                                                (
+                                                                    [literalValue:LoggerPatternConverterLiteral:private] => ] 
+                                                                    [next] => LoggerPatternConverterClass Object
+                                                                        (
+                                                                            [length:LoggerPatternConverterClass:private] => 
+                                                                            [cache:LoggerPatternConverterClass:private] => Array
+                                                                                (
+                                                                                    [MerchantForm] => MerchantForm
+                                                                                    [MobiService] => MobiService
+                                                                                )
+
+                                                                            [next] => LoggerPatternConverterLiteral Object
+                                                                                (
+                                                                                    [literalValue:LoggerPatternConverterLiteral:private] => .
+                                                                                    [next] => LoggerPatternConverterLine Object
+                                                                                        (
+                                                                                            [next] => LoggerPatternConverterLiteral Object
+                                                                                                (
+                                                                                                    [literalValue:LoggerPatternConverterLiteral:private] =>  
+                                                                                                    [next] => LoggerPatternConverterLogger Object
+                                                                                                        (
+                                                                                                            [length:LoggerPatternConverterLogger:private] => 
+                                                                                                            [cache:LoggerPatternConverterLogger:private] => Array
+                                                                                                                (
+                                                                                                                    [MerchantForm] => MerchantForm
+                                                                                                                    [MobiService] => MobiService
+                                                                                                                )
+
+                                                                                                            [next] => LoggerPatternConverterLiteral Object
+                                                                                                                (
+                                                                                                                    [literalValue:LoggerPatternConverterLiteral:private] =>  
+                                                                                                                    [next] => LoggerPatternConverterLevel Object
+                                                                                                                        (
+                                                                                                                            [next] => LoggerPatternConverterLiteral Object
+                                                                                                                                (
+                                                                                                                                    [literalValue:LoggerPatternConverterLiteral:private] =>  
+                                                                                                                                    [next] => LoggerPatternConverterMessage Object
+                                                                                                                                        (
+                                                                                                                                            [next] => LoggerPatternConverterNewLine Object
+                                                                                                                                                (
+                                                                                                                                                    [next] => 
+                                                                                                                                                    [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                                                                        (
+                                                                                                                                                            [min] => 0
+                                                                                                                                                            [max] => 2147483647
+                                                                                                                                                            [padLeft] => 1
+                                                                                                                                                            [trimLeft] => 
+                                                                                                                                                        )
+
+                                                                                                                                                    [option:protected] => 
+                                                                                                                                                )
+
+                                                                                                                                            [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                                                                (
+                                                                                                                                                    [min] => 0
+                                                                                                                                                    [max] => 2147483647
+                                                                                                                                                    [padLeft] => 1
+                                                                                                                                                    [trimLeft] => 
+                                                                                                                                                )
+
+                                                                                                                                            [option:protected] => 
+                                                                                                                                        )
+
+                                                                                                                                    [formattingInfo:protected] => 
+                                                                                                                                    [option:protected] => 
+                                                                                                                                )
+
+                                                                                                                            [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                                                (
+                                                                                                                                    [min] => 5
+                                                                                                                                    [max] => 2147483647
+                                                                                                                                    [padLeft] => 
+                                                                                                                                    [trimLeft] => 
+                                                                                                                                )
+
+                                                                                                                            [option:protected] => 
+                                                                                                                        )
+
+                                                                                                                    [formattingInfo:protected] => 
+                                                                                                                    [option:protected] => 
+                                                                                                                )
+
+                                                                                                            [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                                (
+                                                                                                                    [min] => 0
+                                                                                                                    [max] => 2147483647
+                                                                                                                    [padLeft] => 1
+                                                                                                                    [trimLeft] => 
+                                                                                                                )
+
+                                                                                                            [option:protected] => 
+                                                                                                        )
+
+                                                                                                    [formattingInfo:protected] => 
+                                                                                                    [option:protected] => 
+                                                                                                )
+
+                                                                                            [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                                (
+                                                                                                    [min] => 0
+                                                                                                    [max] => 2147483647
+                                                                                                    [padLeft] => 1
+                                                                                                    [trimLeft] => 
+                                                                                                )
+
+                                                                                            [option:protected] => 
+                                                                                        )
+
+                                                                                    [formattingInfo:protected] => 
+                                                                                    [option:protected] => 
+                                                                                )
+
+                                                                            [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                                (
+                                                                                    [min] => 0
+                                                                                    [max] => 2147483647
+                                                                                    [padLeft] => 1
+                                                                                    [trimLeft] => 
+                                                                                )
+
+                                                                            [option:protected] => 
+                                                                        )
+
+                                                                    [formattingInfo:protected] => 
+                                                                    [option:protected] => 
+                                                                )
+
+                                                            [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                                (
+                                                                    [min] => 0
+                                                                    [max] => 2147483647
+                                                                    [padLeft] => 1
+                                                                    [trimLeft] => 
+                                                                )
+
+                                                            [option:protected] => 
+                                                        )
+
+                                                    [formattingInfo:protected] => 
+                                                    [option:protected] => 
+                                                )
+
+                                            [formattingInfo:protected] => LoggerFormattingInfo Object
+                                                (
+                                                    [min] => 0
+                                                    [max] => 2147483647
+                                                    [padLeft] => 1
+                                                    [trimLeft] => 
+                                                )
+
+                                            [option:protected] => 
+                                        )
+
+                                )
+
+                            [name:protected] => service
+                            [threshold:protected] => 
+                            [requiresLayout:protected] => 1
+                        )
+
+                )
+
+        )
+
+)
+

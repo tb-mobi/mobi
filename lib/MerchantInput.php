@@ -18,7 +18,7 @@ class MerchantInput{
 	);
 	protected function parse(){
 		$obj=$this->rawObj;
-		if(is_null($obj))return;
+		if(is_null($obj)){$this->logger->warn("response is null");return;}
 		foreach($this->params as $k=>$v){
 			$this->params[$k]=isset($obj->$k)?$obj->$k:$this->params[$k];
 		}
@@ -31,6 +31,7 @@ class MerchantInput{
 		
 	}
 	public function __construct($obj,$required=false){
+		$this->logger=Logger::getLogger(__CLASS__);
 		$this->rawObj=$obj;
 		$this->params["required"]=($required)?"true":"false";
 		$this->parse();

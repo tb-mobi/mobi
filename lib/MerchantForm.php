@@ -1,5 +1,5 @@
 <?php
-class MerchantForm{
+class MerchantForm extends Tym{
 	protected $parseString="success";
 	protected $rawObj;
 	protected $inputs=array();
@@ -14,16 +14,18 @@ class MerchantForm{
 	);
 	protected function parse(){
 		$obj=$this->rawObj;
-		if(is_null($obj)){$this->parseString="not object";return;}
-		if(!isset($obj->return)){$this->parseString="no return tag";return;}
-		if(!isset($obj->return->merchantInfo)){$this->parseString="no merchantInfo tag";return;}
-		if(!isset($obj->return->merchantInfo->template)){$this->parseString="no template tag";return;}
+		if(is_null($obj)){$this->logger->warn("response is null");return;}
+		if(!isset($obj->return)){$this->logger->warn("no return tag");return;}
+		if(!isset($obj->return->merchantInfo)){$this->logger->warn("no merchantInfo tag");return;}
+		if(!isset($obj->return->merchantInfo->template)){$this->logger->warn("no template tag");return;}
 		foreach($this->params as $k=>$v){
 			$this->params[$k]=isset($obj->return->merchantInfo->$k)?$obj->return->merchantInfo->$k:$this->params[$k];
 		}
 		$this->params["title"]=isset($obj->return->merchantInfo->template->title)?$obj->return->merchantInfo->template->title:$this->params["title"];
 		if(is_array($obj->return->merchantInfo->template->groups))foreach($obj->return->merchantInfo->template->groups as $input) $this->makeInput($input);
 		else if(is_object($obj->return->merchantInfo->template->groups))$this->makeInput($obj->return->merchantInfo->template->groups);
+		else $this->logger->warn("not object & not array");
+		$this->logger->debug($this->__toString());
 	}
 	protected function makeInput($input){
 		if(is_array($input->inputs)){
@@ -33,6 +35,7 @@ class MerchantForm{
 		}
 	}
 	public function __construct($obj){
+		$this->logger=Logger::getLogger(__CLASS__);
 		$this->rawObj=$obj;
 		$this->parse();
 	}

@@ -1,0 +1,36 @@
+<configuration xmlns="http://logging.apache.org/log4php/">
+    <appender name="common" class="LoggerAppenderDailyFile">
+		<layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date [%pid] %file line %line %logger %-5level %msg%n" />
+        </layout>
+        <param name="file" value="../log/common-%s.log" />
+        <param name="datePattern" value="Y-m-d" />
+    </appender>
+    <appender name="service" class="LoggerAppenderDailyFile">
+		<layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date [%pid] %class.%line %logger %-5level %msg%n" />
+        </layout>
+        <param name="file" value="../log/service-%s.log" />
+        <param name="datePattern" value="Y-m-d" />
+    </appender>
+	<logger name="MobiService">
+		<level value="TRACE"/>
+        <appender_ref ref="service" />
+    </logger>
+	<logger name="MerchantForm">
+		<level value="TRACE"/>
+        <appender_ref ref="service" />
+    </logger>
+	<logger name="MerchantInput">
+		<level value="TRACE"/>
+        <appender_ref ref="service" />
+    </logger>
+	<logger name="Mobi">
+		<level value="TRACE"/>
+        <appender_ref ref="common" />
+    </logger>
+    <root>
+        <level value="TRACE"/>
+        <appender_ref ref="common" />
+    </root>
+</configuration>
