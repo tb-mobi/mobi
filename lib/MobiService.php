@@ -35,7 +35,6 @@ class MobiService extends Tym{
 				if(isset($request["mobi"]["response"]))$ret=new $request["mobi"]["response"]($ret);
 				$this->logger->debug("Request: ".$this->soapSrv->__getLastRequest());
 				$this->logger->debug("Response: ".$this->soapSrv->__getLastResponse());
-				print_r($ret);
 				return $ret;
 			}
 		} catch (Exception $e) {  

@@ -32,7 +32,7 @@ class MerchantForm extends Tym{
 			foreach($input->inputs as $inpt){
 				array_push($this->inputs,new MerchantInput($inpt,($input->id==="basicRequisite")));
 			}
-		}
+		}else array_push($this->inputs,new MerchantInput($input,($input->id==="basicRequisite")));
 	}
 	public function __construct($obj){
 		$this->logger=Logger::getLogger(__CLASS__);
